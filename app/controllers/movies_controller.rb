@@ -7,7 +7,9 @@ class MoviesController < ApplicationController
   end
 #HW2 Problem 1.b, Problem 2
   def index
-    #ratings
+    #ratings, checks to see if ratings have been selectid, if they have then the 
+    #ratings create a hash and array so that the correct movies are selected
+    #if not then all the ratings are selected
     @all_ratings = Movie.all_ratings
     if params[:ratings] 
       @ratings_hash = params[:ratings]
@@ -21,7 +23,9 @@ class MoviesController < ApplicationController
       @ratings_array = @all_ratings
     end
 
-    #Highlighting
+    #Highlighting, checks to see what sort partameters have been passed
+    #highlits the coloum header of selected sort parameter
+    #if ratings and paraemters then it sorts from the smaller list
     if params[:sort_param]
       session[:sort_param]  = params[:sort_param]
       if (params[:sort_param] == "title")
@@ -34,6 +38,7 @@ class MoviesController < ApplicationController
       redirect_to params.merge(:sort_param => session[:sort_param])
     end
       
+      #makes the list of movies for the site to display
       @movies = Movie.find_all_by_rating(@ratings_array, :order => session[:sort_param])
    end
 

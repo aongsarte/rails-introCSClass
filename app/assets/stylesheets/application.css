@@ -60,7 +60,7 @@ form label {
   color: maroon;
 }
 
-/*HW 2 1.b*/
+/*HW 2 1.b, used to highlite  the selected tag*/
 table#movies th.hilite{
   background-color: yellow;
 }
